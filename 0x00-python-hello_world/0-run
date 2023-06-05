@@ -1,2 +1,2 @@
 #!/bin/bash
-python3 /alx-higher_level_programming/main.py
+python3 $PYFILE
