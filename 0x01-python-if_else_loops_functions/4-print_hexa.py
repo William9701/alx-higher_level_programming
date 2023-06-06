@@ -1,3 +1,4 @@
 #!/usr/bin/python3
-for i, v in enumerate(hex(val) for val in range(0, 99)):
+for i in range(0, 99):
+    v = hex(i)
     print("{} = {}".format(i, v))
