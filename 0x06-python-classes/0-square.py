@@ -1,6 +1,15 @@
 #!/usr/bin/python3
+
+"""
+Square module
+This module defines the Square class.
+"""
+
+
 class Square:
-    '''
-    This class specifies the area and everything that has to do with the square
-    '''
+    """
+    Square class
+    This class represents a square shape.
+    """
+
     pass
