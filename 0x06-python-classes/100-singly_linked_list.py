@@ -53,7 +53,7 @@ class Node:
             TypeError: If the data value is not an integer.
         """
         if not isinstance(value, int):
-            raise TypeError("data must be an integer.")
+            raise TypeError("data must be an integer")
         self._data = value
 
     @property
@@ -78,7 +78,7 @@ class Node:
             TypeError: If the next_node is not a Node object or None.
         """
         if value is not None and not isinstance(value, Node):
-            raise TypeError("next node must be a Node object or None.")
+            raise TypeError("next_node must be a Node object")
         self._next_node = value
 
 
