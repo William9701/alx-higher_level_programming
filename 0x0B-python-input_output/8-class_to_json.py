@@ -2,7 +2,6 @@
 """ This module retuns a dict representation """
 
 
-
 def class_to_json(obj):
     """ This retuns any type of file passed to it """
 
