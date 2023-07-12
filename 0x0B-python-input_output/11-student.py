@@ -18,3 +18,11 @@ class Student:
         else:
             return {attr: getattr(self, attr)
                     for attr in attrs if hasattr(self, attr)}
+
+    def reload_from_json(self, json):
+        """ Replaces all attributes of the Student\
+                instance based on the\
+                provided JSON dictionary """
+
+        for attr, value in json.items():
+            setattr(self, attr, value)
