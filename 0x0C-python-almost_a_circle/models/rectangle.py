@@ -134,8 +134,10 @@ class Rectangle(Base):
         """ creats a dummy instace of the attribtes """
 
         dummy_rect = cls(dictionary.get('width', 0),
-                dictionary.get('height', 0), dictionary.get('x', 0),
-                dictionary.get('y', 0), dictionary.get('id', 0))
+                         dictionary.get('height', 0),
+                         dictionary.get('x', 0),
+                         dictionary.get('y', 0),
+                         dictionary.get('id', 0))
         dummy_rect.update(**dictionary)
         return dummy_rect
 
@@ -153,4 +155,5 @@ class Rectangle(Base):
     def __str__(self):
         """ prints a srting rep of the code """
 
-        return f'[Rectangle] ({self.id}) {self.x}/{self.y} - {self.width}/{self.height}'
+        return f'[Rectangle] ({self.id}) {self.x}/{self.y} - ' \
+            f'{self.width}/{self.height}'

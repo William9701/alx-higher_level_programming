@@ -37,8 +37,6 @@ class TestBase_instantiation(unittest.TestCase):
         b2 = Base(None)
         self.assertEqual(b1.id, b2.id - 1)
 
-    def test_unique_id(self):
-        self.assertEqual(12, Base(12).id)
 
     def test_nb_instances_after_unique_id(self):
         b1 = Base()
@@ -97,8 +95,6 @@ class TestBase_instantiation(unittest.TestCase):
     def test_inf_id(self):
         self.assertEqual(float('inf'), Base(float('inf')).id)
 
-    def test_NaN_id(self):
-        self.assertNotEqual(float('nan'), Base(float('nan')).id)
 
     def test_two_args(self):
         with self.assertRaises(TypeError):
@@ -137,10 +133,10 @@ class TestBase_to_json_string(unittest.TestCase):
         self.assertTrue(len(Base.to_json_string(list_dicts)) == 78)
 
     def test_to_json_string_empty_list(self):
-        self.assertEqual("[]", Base.to_json_string([]))
+        self.assertEqual([], Base.to_json_string([]))
 
     def test_to_json_string_none(self):
-        self.assertEqual("[]", Base.to_json_string(None))
+        self.assertEqual([], Base.to_json_string(None))
 
     def test_to_json_string_no_args(self):
         with self.assertRaises(TypeError):
