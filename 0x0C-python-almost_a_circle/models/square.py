@@ -9,6 +9,8 @@ class Square(Rectangle):
     """ this a square class which inherits a rectangle class """
 
     def __init__(self, size, x=0, y=0, id=None):
+        """ initializes the attributes of tyhe shape """
+
         super().__init__(size, size, x, y, id)
 
     @property

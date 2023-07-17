@@ -13,6 +13,8 @@ class Base:
     __nb_objects = 0
 
     def __init__(self, id=None):
+        """ this is the inti function that intializes """
+
         Base.__nb_objects += 1
         if id is not None:
             if isinstance(id, int):
