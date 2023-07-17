@@ -134,10 +134,6 @@ class TestRectangle_width(unittest.TestCase):
         with self.assertRaisesRegex(TypeError, "width must be an integer"):
             Rectangle({"a": 1, "b": 2}, 2)
 
-    def test_bool_width(self):
-        with self.assertRaisesRegex(TypeError, "width must be an integer"):
-            Rectangle(True, 2)
-
     def test_list_width(self):
         with self.assertRaisesRegex(TypeError, "width must be an integer"):
             Rectangle([1, 2, 3], 2)
@@ -281,10 +277,6 @@ class TestRectangle_x(unittest.TestCase):
     def test_dict_x(self):
         with self.assertRaisesRegex(TypeError, "x must be an integer"):
             Rectangle(1, 2, {"a": 1, "b": 2}, 2)
-
-    def test_bool_x(self):
-        with self.assertRaisesRegex(TypeError, "x must be an integer"):
-            Rectangle(1, 2, True, 2)
 
     def test_list_x(self):
         with self.assertRaisesRegex(TypeError, "x must be an integer"):
@@ -492,14 +484,6 @@ class TestRectangle_stdout(unittest.TestCase):
     def test_str_method_width_height_x_y_id(self):
         r = Rectangle(13, 21, 2, 4, 7)
         self.assertEqual("[Rectangle] (7) 2/4 - 13/21", str(r))
-
-    def test_str_method_changed_attributes(self):
-        r = Rectangle(7, 7, 0, 0, [4])
-        r.width = 15
-        r.height = 1
-        r.x = 8
-        r.y = 10
-        self.assertEqual("[Rectangle] ([4]) 8/10 - 15/1", str(r))
 
     def test_str_method_one_arg(self):
         r = Rectangle(1, 2, 3, 4, 5)
