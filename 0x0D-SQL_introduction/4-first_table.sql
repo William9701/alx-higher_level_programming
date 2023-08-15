@@ -1,2 +1,2 @@
--- still confuse
+--creates a table called first_table
 CREATE TABLE IF NOT EXISTS first_name (id INT, name VARCHAR(256));
