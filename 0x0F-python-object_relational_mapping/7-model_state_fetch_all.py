@@ -1,23 +1,31 @@
 #!/usr/bin/python3
-"""Module that retrieves and prints all\
-        states from a MySQL database using SQLAlchemy."""
-
 import sys
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from model_state import State
-
+from model_state import Base, State
 
 if __name__ == "__main__":
-    # Create the SQLAlchemy engine using the provided MySQL credentials
-    engine = create_engine("mysql+mysqldb://{}:{}@localhost/{}"
-                           .format(sys.argv[1], sys.argv[2], sys.argv[3]),
-                           pool_pre_ping=True)
+    if len(sys.argv) != 4:
+        print("Usage: {} <mysql_username> <mysql_password> <database_name>".format(sys.argv[0]))
+        sys.exit(1)
 
-    Session = sessionmaker(bind=engine)
-    # Create a session object
-    session = Session()
+    mysql_username, mysql_password, database_name = sys.argv[1], sys.argv[2], sys.argv[3]
 
-    # Retrieve all states from the database and print their IDs and names
-    for state in session.query(State).order_by(State.id):
+    # Create the engine
+    engine = create_engine(
+        'mysql+mysqlconnector://{}:{}@localhost:3306/{}'.format(
+            mysql_username, mysql_password, database_name
+        )
+    )
+
+    # Bind the engine to the Base class
+    Base.metadata.bind = engine
+
+    # Create a session
+    DBSession = sessionmaker(bind=engine)
+    session = DBSession()
+
+    # Query and display State objects
+    states = session.query(State).order_by(State.id).all()
+    for state in states:
         print("{}: {}".format(state.id, state.name))
