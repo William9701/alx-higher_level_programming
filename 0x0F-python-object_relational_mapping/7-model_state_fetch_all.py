@@ -1,10 +1,6 @@
 #!/usr/bin/python3
-<<<<<<< HEAD
 """Module that retrieves and prints all\
         states from a MySQL database using SQLAlchemy."""
-=======
-"""Start link class to table in database"""
->>>>>>> 3aba1fb371494ca1cb13fc9f4f7dfccf46b6453e
 
 import sys
 from sqlalchemy import create_engine
