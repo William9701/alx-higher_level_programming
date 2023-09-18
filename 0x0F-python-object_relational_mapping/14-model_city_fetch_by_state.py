@@ -9,6 +9,7 @@ from sqlalchemy.orm import sessionmaker
 
 port = 3306
 if __name__ == "__main__":
+    """ mene teke branfugckg.uguyh"""
     engine = create_engine('mysql+mysqldb://{}:{}@localhost:{}/{}'.format(
         sys.argv[1],
         sys.argv[2],
