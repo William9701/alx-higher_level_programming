@@ -1,10 +1,14 @@
 #!/usr/bin/python3
+""" main files """
+
 import sys
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from model_state import Base, State
 
+
 if __name__ == "__main__":
+    """main file """
     if len(sys.argv) != 4:
         print("Usage: {} <mysql_username> <mysql_password> <database_name>".format(sys.argv[0]))
         sys.exit(1)
