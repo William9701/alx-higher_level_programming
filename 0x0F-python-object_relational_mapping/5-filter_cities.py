@@ -23,18 +23,14 @@ def list_states(username, password, database_name, state_name_searched):
 
     try:
         formatted_state_name = "'{}'".format(state_name_searched)
-
-        cursor.execute(
-                "SELECT name "
-                "FROM cities "
-                "WHERE cities.state_id = ("
-                "   SELECT id FROM states WHERE name={}"
-                ") ORDER BY id".format(formatted_state_name)
-                )
+        
+        cursor.execute("SELECT name FROM cities WHERE cities.state_id = (SELECT id FROM states where name={})  ORDER BY id".format(formatted_state_name))
 
         results = cursor.fetchall()
         state_names = ', '.join(row[0] for row in results)
         print(state_names)
+    except MySQLdb.Error as e:
+         print("An error occurred while executing the MySQL query: {}".format(str(e)))
 
     finally:
         cursor.close()
@@ -43,7 +39,7 @@ def list_states(username, password, database_name, state_name_searched):
 
 if __name__ == "__main__":
     if len(sys.argv) != 5:
-        print("Usage")
+        print("Usage: python script.py <mysql_username> <mysql_password> <database_name> <state_name_searched>")
     else:
         username, password, database_name, state_name_searched = sys.argv[
             1], sys.argv[2], sys.argv[3], sys.argv[4]

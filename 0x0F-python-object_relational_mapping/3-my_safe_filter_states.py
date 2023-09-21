@@ -4,7 +4,6 @@
 import MySQLdb
 import sys
 
-
 def search_states(username, password, database_name, state_name):
     try:
         db = MySQLdb.connect(
@@ -19,11 +18,12 @@ def search_states(username, password, database_name, state_name):
         # SQL query with a parameterized query
         sql_query = "SELECT * FROM states WHERE name = %s ORDER BY id"
 
+        
+        # Execute the SQL query with the state_name as a parameter
         cursor.execute(sql_query, (state_name,))
 
         # Fetch and display the results
         results = cursor.fetchall()
-
         for row in results:
             print("{}: {}".format(row[0], row[1]))
 
@@ -33,11 +33,9 @@ def search_states(username, password, database_name, state_name):
         cursor.close()
         db.close()
 
-
 if __name__ == "__main__":
     if len(sys.argv) != 5:
-        print("Usage")
+        print("Usage: python script.py <mysql_username> <mysql_password> <database_name> <state_name>")
     else:
-        username, password, database_name, state_name = sys.argv[1], \
-                sys.argv[2], sys.argv[3], sys.argv[4]
+        username, password, database_name, state_name = sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4]
         search_states(username, password, database_name, state_name)

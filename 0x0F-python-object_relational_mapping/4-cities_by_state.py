@@ -23,13 +23,7 @@ def list_states(username, password, database_name):
 
     # Execute the query and fetch results
     try:
-        cursor.execute(
-                "SELECT cities.id, cities.name, states.name "
-                "FROM cities "
-                "JOIN states ON cities.state_id=states.id "
-                "ORDER BY id"
-                )
-
+        cursor.execute("SELECT cities.id, cities.name, states.name FROM cities JOIN states ON cities.state_id=states.id  ORDER BY id")
         results = cursor.fetchall()
         for row in results:
             print(row)
@@ -42,8 +36,7 @@ def list_states(username, password, database_name):
 
 if __name__ == "__main__":
     if len(sys.argv) != 4:
-        print("Usage")
+        print("Usage: python script.py <mysql_username> <mysql_password> <database_name>")
     else:
-        username, password, database_name = sys.argv[1], \
-                sys.argv[2], sys.argv[3]
+        username, password, database_name = sys.argv[1], sys.argv[2], sys.argv[3]
         list_states(username, password, database_name)
