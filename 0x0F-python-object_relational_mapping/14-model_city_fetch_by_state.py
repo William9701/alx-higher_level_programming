@@ -29,7 +29,9 @@ if __name__ == "__main__":
 
     # Bind the Base classes to the engine
     Base.metadata.bind = engine
-
+    # Create the 'states' and 'cities' tables (if not already created)
+    Base.metadata.create_all(bind=engine)
+    
     # Create a session
     Session = sessionmaker(bind=engine)
     session = Session()
