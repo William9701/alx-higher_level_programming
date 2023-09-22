@@ -14,6 +14,7 @@ if __name__ == "__main__":
                                                          sys.argv[2],
                                                          sys.argv[3]),
         pool_pre_ping=True)
+    Base.metadata.bind = engine
 
     # Create a session to interact with the database
     Session = sessionmaker(bind=engine)
