@@ -1,10 +1,14 @@
 #!/usr/bin/python3
-"""this module creates a city from the relationship with the state"""
+"""
+Script that lists all State objects and their corresponding City objects from
+the database hbtn_0e_101_usa
+"""
+
 import sys
-from relationship_state import Base
-from relationship_city import City
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
+from relationship_state import Base, State
+from relationship_city import City
 
 if __name__ == "__main__":
     # Check for the correct number of arguments
@@ -24,20 +28,15 @@ if __name__ == "__main__":
     # Bind the Base classes to the engine
     Base.metadata.bind = engine
 
-    # Create the 'states' and 'cities' tables (if not already created)
-    Base.metadata.create_all(bind=engine)
-
     # Create a session
     Session = sessionmaker(bind=engine)
     session = Session()
 
-    cities = session.query(City).order_by(City.state_id, City.id).all()
+    # Query the City objects and access the linked State objects via the
+    # state relationship
+    cities = session.query(City).order_by(City.id).all()
 
-    current_state_id = None
-
+    # Print the results
     for city in cities:
-        if city.state_id != current_state_id:
-            print("{}: {}".format(city.state.id, city.state.name))
-            current_state_id = city.state_id
+        print("{}: {} -> {}".format(city.id, city.name, city.state.name))
 
-        print("\t{}: {}".format(city.id, city.name))
