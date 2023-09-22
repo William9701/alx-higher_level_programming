@@ -30,6 +30,3 @@ def engine_form(user, psd, db):
 if __name__ == "__main__":
     username, password, database = sys.argv[1], sys.argv[2], sys.argv[3]
     engine_form(username, password, database)
-
-
-# Create an SQLAlchemy engine for connecting to the database
