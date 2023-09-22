@@ -4,7 +4,7 @@ letter 'a' in their name. Usage: python script.py <mysql_username>
 <mysql_password> <database_name>"""
 
 import sys
-from model_state import Base, State
+from relationship_state import Base, State
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
