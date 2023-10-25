@@ -19,6 +19,6 @@ request(url, function (error, response, body) {
     }
     console.log(count);
   } else {
-    console.log(error); // Print the error if one occurred
+    console.error(error); // Print the error if one occurred
   }
 });
