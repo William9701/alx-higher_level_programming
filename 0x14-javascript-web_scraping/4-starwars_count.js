@@ -1,24 +1,17 @@
 #!/usr/bin/node
 const request = require('request');
 
-if (process.argv.length <= 2) {
-  console.log('Please provide the API URL as an argument');
-  process.exit(-1);
-}
+const apiUrl = 'https://swapi-api.alx-tools.com/api/films/';
+const characterId = 18; // Wedge Antilles' character ID
 
-const url = process.argv[2];
-let count = 0;
-
-request(url, function (error, response, body) {
-  if (!error) {
-    const movies = JSON.parse(body);
-    for (const movie of movies.results) {
-      if (movie.characters.includes('https://swapi-api.alx-tools.com/api/people/18/')) {
-        count += 1;
-      }
-    }
-    console.log(count);
+request(apiUrl, (error, response, body) => {
+  if (error) {
+    console.error('An error occurred:', error);
+  } else if (response.statusCode !== 200) {
+    console.error(`Request failed with status code ${response.statusCode}`);
   } else {
-    console.log(error); // Print the error if one occurred
+    const films = JSON.parse(body);
+    const filmsWithWedgeAntilles = films.filter((film) => film.characters.includes(characterId));
+    console.log(`Number of films where Wedge Antilles is present: ${filmsWithWedgeAntilles.length}`);
   }
 });
